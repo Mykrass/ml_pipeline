@@ -12,10 +12,9 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         X_transformed = X.copy()
-        #X_transformed['adult_male'] = (X['sex']=='male') & ~(X['age']<16)
         X_transformed['child'] = (X['MARRIAGE']=='1') & ~(X['AGE']<16)
-        #X_transformed['who'] = np.where(X['age']<16, 'child', 
-        #                                np.where(X['sex']=='female', 'woman', 'man'))
+        X_transformed['who'] = np.where(X['age']<16, 'child', 
+                                        np.where(X['sex']=='female', 'woman', 'man'))
         return X
 
 class Imputer(BaseEstimator, TransformerMixin):

@@ -16,8 +16,6 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         X_transformed['child'] = (X['MARRIAGE']=='1') & ~(X['AGE']<16)
         #X_transformed['who'] = np.where(X['age']<16, 'child', 
         #                                np.where(X['sex']=='female', 'woman', 'man'))
-        X_transformed['who'] = np.where(X['LIMIT_BAL']<1000,
-                                        np.where(X['SEX']== 'child', '1', '2'))
         return X
 
 class Imputer(BaseEstimator, TransformerMixin):

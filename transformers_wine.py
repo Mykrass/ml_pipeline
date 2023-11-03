@@ -11,10 +11,7 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        wine_dict={'red': 0, 'white': 1}
         X_transformed = X.copy()
-        #X_transformed['child'] = (X['MARRIAGE']=='1') & ~(X['AGE']<16)
-        X['type'] = X['type'].map(wine_dict)
         return X
 
 class Imputer(BaseEstimator, TransformerMixin):

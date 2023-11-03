@@ -25,7 +25,10 @@ class Imputer(BaseEstimator, TransformerMixin):
             self.value = X[self.features].mean()
         return self
     
-    def transform(self, X):
+    def transform(self, X, y):
+        wine_dict={'red': 0, 'white': 1}
+        y['type']= y['type'].map(wine_dict)
+        
         X_transformed = X.copy()
         X_transformed[self.features] = X[self.features].fillna(self.value)
         return X_transformed

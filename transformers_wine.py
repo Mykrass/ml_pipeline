@@ -10,9 +10,14 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
 
-    def transform(self, X):
+    def transform(self, X, y):
         X_transformed = X.copy()
-        return X
+        
+        y_transformed = y.copy()
+        wine_dict={'red': 0, 'white': 1}
+        y['type']= y['type'].map(wine_dict)
+        return X, y
+
 
 class Imputer(BaseEstimator, TransformerMixin):
     def __init__(self, features, method='constant', value='missing'):
@@ -25,10 +30,7 @@ class Imputer(BaseEstimator, TransformerMixin):
             self.value = X[self.features].mean()
         return self
     
-    def transform(self, X, y):
-        wine_dict={'red': 0, 'white': 1}
-        y['type']= y['type'].map(wine_dict)
-        
+    def transform(self, X):
         X_transformed = X.copy()
         X_transformed[self.features] = X[self.features].fillna(self.value)
         return X_transformed

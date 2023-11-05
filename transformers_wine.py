@@ -14,13 +14,6 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         X_transformed = X.copy()
         return X
 
-    def transform_y(self, X, y):
-        X_transformed = X.copy()
-        y_transformed = y.copy()
-        wine_dict={'red': 0, 'white': 1}
-        X['type']= X['type'].map(wine_dict)
-        return X, y
-
 class Imputer(BaseEstimator, TransformerMixin):
     def __init__(self, features, method='constant', value='missing'):
         self.features = features

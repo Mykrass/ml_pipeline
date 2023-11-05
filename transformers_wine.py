@@ -14,6 +14,10 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         X_transformed = X.copy()
         return X
 
+    def transform_y(self, y):
+        y_transformed = y.copy()
+        return y
+
 class Imputer(BaseEstimator, TransformerMixin):
     def __init__(self, features, method='constant', value='missing'):
         self.features = features
